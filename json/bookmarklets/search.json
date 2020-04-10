@@ -1,0 +1,61 @@
+{
+  "title":"bookmarklets",
+  "children":[
+                  {
+                      "title":"google",
+                      "uri":"javascript:q%20=%20%22%22%20+%20(window.getSelection%20?%20window.getSelection()%20:%20document.getSelection%20?%20document.getSelection()%20:%20document.selection.createRange().text);%20if%20(!q)%20q%20=%20prompt(%22You%20didn't%20select%20any%20text.%20Enter%20a%20search%20phrase:%22,%20%22%22);%20if%20(q!=null)%20location=%22http://www.google.com/search?q=%22%20+%20escape(q).replace(/%20/g,%20%22+%22);%20void%200"
+                   },
+                   {
+                      "title":"google site search",
+                      "uri":"javascript:q%20=%20%22%22%20+%20(window.getSelection%20?%20window.getSelection()%20:%20document.getSelection%20?%20document.getSelection()%20:%20document.selection.createRange().text);%20if%20(!q)%20q%20=%20prompt(%22You%20didn't%20select%20any%20text.%20Enter%20a%20search%20phrase:%22,%20%22%22);%20if%20(q!=null)%20location=(%22http://www.google.com/search?num=100&q=site:%22%20+%20escape(location.hostname)%20+%20%22%20\\%22%22%20+%20escape(q.replace(/\\%22/g,%22%22))%20+%20%22\\%22%22).replace(/%20/g,%20%22+%22);%20void%200"
+                   },
+                   {
+                      "title":"google site search: title",
+                      "uri":"javascript:location=(%22http://www.google.com/search?num=100&q=site:%22%20+%20escape(location.hostname)%20+%20%22%20\\%22%22%20+%20escape(document.title.replace(/\\%22/g,%22%22))%20+%20%22\\%22%22).replace(/%20/g,%20%22+%22);%20void%200"
+                   },
+                   {
+                      "title":"num=100",
+                      "uri":"javascript:N=%22num=100%22;%20R%20=%20/num=\\d*/;%20if%20(R.exec(location.search))%20location.search%20=%20location.search.replace(R,%20N);%20else%20location.search%20+=%20%22&%22%20+%20N;%20void%200"
+                   },
+                   {
+                      "title":"num=10",
+                      "uri":"javascript:N=%22num=10%22;%20R%20=%20/num=\\d*/;%20if%20(R.exec(location.search))%20location.search%20=%20location.search.replace(R,%20N);%20else%20location.search%20+=%20%22&%22%20+%20N;%20void%200"
+                   },
+                   {
+                      "title":"num=1",
+                      "uri":"javascript:N=%22num=1%22;%20R%20=%20/num=\\d*/;%20if%20(R.exec(location.search))%20location.search%20=%20location.search.replace(R,%20N);%20else%20location.search%20+=%20%22&%22%20+%20N;%20void%200"
+                   },
+                   {
+                      "title":"filter=0",
+                      "uri":"javascript:N=%22filter=0%22;%20R%20=%20/filter=\\d*/;%20if%20(R.exec(location.search))%20location.search%20=%20location.search.replace(R,%20N);%20else%20location.search%20+=%20%22&%22%20+%20N;%20void%200"
+                   },
+                   {
+                      "title":"@google",
+                      "uri":"javascript:Q=[];%20c=location.search.slice(1).split('&');%20for%20(i%20in%20c)%20{%20f=c[i].split('=');%20if%20(f[0]=='q'%20||%20f[0]=='as_q'%20||%20f[0]=='p'%20||%20f[0]=='query')%20if%20(f[1])%20Q.push(f[1])%20}%20R=unescape(Q.join(';%20').replace(/\\+/g,'%20'));%20location%20=%20'http://www.google.com/search?q='%20+%20escape(R);"
+                   },
+                   {
+                      "title":"@alltheweb",
+                      "uri":"javascript:Q=[];%20c=location.search.slice(1).split('&');%20for%20(i%20in%20c)%20{%20f=c[i].split('=');%20if%20(f[0]=='q'%20||%20f[0]=='as_q'%20||%20f[0]=='p'%20||%20f[0]=='query')%20if%20(f[1])%20Q.push(f[1])%20}%20R=unescape(Q.join(';%20').replace(/\\+/g,'%20'));%20location%20=%20'http://www.alltheweb.com/search?q='%20+%20escape(R);"
+                   },
+                   {
+                      "title":"@teoma",
+                      "uri":"javascript:Q=[];%20c=location.search.slice(1).split('&');%20for%20(i%20in%20c)%20{%20f=c[i].split('=');%20if%20(f[0]=='q'%20||%20f[0]=='as_q'%20||%20f[0]=='p'%20||%20f[0]=='query')%20if%20(f[1])%20Q.push(f[1])%20}%20R=unescape(Q.join(';%20').replace(/\\+/g,'%20'));%20location%20=%20'http://s.teoma.com/search?q='%20+%20escape(R);"
+                   },
+                   {
+                      "title":"@msn",
+                      "uri":"javascript:Q=[];%20c=location.search.slice(1).split('&');%20for%20(i%20in%20c)%20{%20f=c[i].split('=');%20if%20(f[0]=='q'%20||%20f[0]=='as_q'%20||%20f[0]=='p'%20||%20f[0]=='query')%20if%20(f[1])%20Q.push(f[1])%20}%20R=unescape(Q.join(';%20').replace(/\\+/g,'%20'));%20location%20=%20'http://search.msn.com/results.aspx?q='%20+%20escape(R);"
+                   },
+                   {
+                      "title":"@altavista",
+                      "uri":"javascript:Q=[];%20c=location.search.slice(1).split('&');%20for%20(i%20in%20c)%20{%20f=c[i].split('=');%20if%20(f[0]=='q'%20||%20f[0]=='as_q'%20||%20f[0]=='p'%20||%20f[0]=='query')%20if%20(f[1])%20Q.push(f[1])%20}%20R=unescape(Q.join(';%20').replace(/\\+/g,'%20'));%20location%20=%20'http://altavista.com/web/results?q='%20+%20escape(R);"
+                   },
+                   {
+                      "title":"wayback newest",
+                      "uri":"javascript:void(location.href='http://web.archive.org/'+escape(location.href));"
+                   },
+                   {
+                      "title":"wayback search",
+                      "uri":"javascript:void(location.href='http://web.archive.org/web/*/'+escape(location.href));"
+                   }
+                ]
+             }
