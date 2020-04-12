@@ -1,0 +1,373 @@
+
+<section id=config>
+    <h2>Configuration</h2>
+
+    <p>Both the <a href="#CodeMirror"><code>CodeMirror</code></a>
+    function and its <code>fromTextArea</code> method take as second
+    (optional) argument an object containing configuration options.
+    Any option not supplied like this will be taken
+    from <a href="#defaults"><code>CodeMirror.defaults</code></a>, an
+    object containing the default options. You can update this object
+    to change the defaults on your page.</p>
+
+    <p>Options are not checked in any way, so setting bogus option
+    values is bound to lead to odd errors.</p>
+
+    <p>These are the supported options:</p>
+
+    <dl>
+      <dt id="option_value"><code><strong>value</strong>: string|CodeMirror.Doc</code></dt>
+      <dd>The starting value of the editor. Can be a string, or
+      a <a href="#api_doc">document object</a>.</dd>
+
+      <dt id="option_mode"><code><strong>mode</strong>: string|object</code></dt>
+      <dd>The mode to use. When not given, this will default to the
+      first mode that was loaded. It may be a string, which either
+      simply names the mode or is
+      a <a href="http://en.wikipedia.org/wiki/MIME">MIME</a> type
+      associated with the mode. The value <code>"null"</code>
+      indicates no highlighting should be applied. Alternatively, it
+      may be an object containing configuration options for the mode,
+      with a <code>name</code> property that names the mode (for
+      example <code>{name: "javascript", json: true}</code>). The demo
+      pages for each mode contain information about what configuration
+      parameters the mode supports. You can ask CodeMirror which modes
+      and MIME types have been defined by inspecting
+      the <code>CodeMirror.modes</code>
+      and <code>CodeMirror.mimeModes</code> objects. The first maps
+      mode names to their constructors, and the second maps MIME types
+      to mode specs.</dd>
+
+      <dt id="option_lineSeparator"><code><strong>lineSeparator</strong>: string|null</code></dt>
+      <dd>Explicitly set the line separator for the editor. By default
+      (value <code>null</code>), the document will be split on CRLFs
+      as well as lone CRs and LFs, and a single LF will be used as
+      line separator in all output (such
+      as <a href="#getValue"><code>getValue</code></a>). When a
+      specific string is given, lines will only be split on that
+      string, and output will, by default, use that same
+      separator.</dd>
+
+      <dt id="option_theme"><code><strong>theme</strong>: string</code></dt>
+      <dd>The theme to style the editor with. You must make sure the
+      CSS file defining the corresponding <code>.cm-s-[name]</code>
+      styles is loaded (see
+      the <a href="../theme/"><code>theme</code></a> directory in the
+      distribution). The default is <code>"default"</code>, for which
+      colors are included in <code>codemirror.css</code>. It is
+      possible to use multiple theming classes at once—for
+      example <code>"foo bar"</code> will assign both
+      the <code>cm-s-foo</code> and the <code>cm-s-bar</code> classes
+      to the editor.</dd>
+
+      <dt id="option_indentUnit"><code><strong>indentUnit</strong>: integer</code></dt>
+      <dd>How many spaces a block (whatever that means in the edited
+      language) should be indented. The default is 2.</dd>
+
+      <dt id="option_smartIndent"><code><strong>smartIndent</strong>: boolean</code></dt>
+      <dd>Whether to use the context-sensitive indentation that the
+      mode provides (or just indent the same as the line before).
+      Defaults to true.</dd>
+
+      <dt id="option_tabSize"><code><strong>tabSize</strong>: integer</code></dt>
+      <dd>The width of a tab character. Defaults to 4.</dd>
+
+      <dt id="option_indentWithTabs"><code><strong>indentWithTabs</strong>: boolean</code></dt>
+      <dd>Whether, when indenting, the first N*<code>tabSize</code>
+      spaces should be replaced by N tabs. Default is false.</dd>
+
+      <dt id="option_electricChars"><code><strong>electricChars</strong>: boolean</code></dt>
+      <dd>Configures whether the editor should re-indent the current
+      line when a character is typed that might change its proper
+      indentation (only works if the mode supports indentation).
+      Default is true.</dd>
+
+      <dt id="option_specialChars"><code><strong>specialChars</strong>: RegExp</code></dt>
+      <dd>A regular expression used to determine which characters
+      should be replaced by a
+      special <a href="#option_specialCharPlaceholder">placeholder</a>.
+      Mostly useful for non-printing special characters. The default
+      is <code>/[\u0000-\u001f\u007f-\u009f\u00ad\u061c\u200b-\u200f\u2028\u2029\ufeff\ufff9-\ufffc]/</code>.</dd>
+      <dt id="option_specialCharPlaceholder"><code><strong>specialCharPlaceholder</strong>: function(char) → Element</code></dt>
+      <dd>A function that, given a special character identified by
+      the <a href="#option_specialChars"><code>specialChars</code></a>
+      option, produces a DOM node that is used to represent the
+      character. By default, a red dot (<span style="color: red">•</span>)
+      is shown, with a title tooltip to indicate the character code.</dd>
+
+      <dt id="option_direction"><code><strong>direction</strong>: "ltr" | "rtl"</code></dt>
+      <dd>Flips overall layout and selects base paragraph direction to
+      be left-to-right or right-to-left.  Default is "ltr".
+      CodeMirror applies the Unicode Bidirectional Algorithm to each
+      line, but does not autodetect base direction — it's set to the
+      editor direction for all lines.  The resulting order is
+      sometimes wrong when base direction doesn't match user intent
+      (for example, leading and trailing punctuation jumps to the
+      wrong side of the line).  Therefore, it's helpful for
+      multilingual input to let users toggle this option.
+
+      <dt id="option_rtlMoveVisually"><code><strong>rtlMoveVisually</strong>: boolean</code></dt>
+      <dd>Determines whether horizontal cursor movement through
+      right-to-left (Arabic, Hebrew) text is visual (pressing the left
+      arrow moves the cursor left) or logical (pressing the left arrow
+      moves to the next lower index in the string, which is visually
+      right in right-to-left text). The default is <code>false</code>
+      on Windows, and <code>true</code> on other platforms.</dd>
+
+      <dt id="option_keyMap"><code><strong>keyMap</strong>: string</code></dt>
+      <dd>Configures the key map to use. The default
+      is <code>"default"</code>, which is the only key map defined
+      in <code>codemirror.js</code> itself. Extra key maps are found in
+      the <a href="../keymap/"><code>key map</code></a> directory. See
+      the <a href="#keymaps">section on key maps</a> for more
+      information.</dd>
+
+      <dt id="option_extraKeys"><code><strong>extraKeys</strong>: object</code></dt>
+      <dd>Can be used to specify extra key bindings for the editor,
+      alongside the ones defined
+      by <a href="#option_keyMap"><code>keyMap</code></a>. Should be
+      either null, or a valid <a href="#keymaps">key map</a> value.</dd>
+
+      <dt id="option_configureMouse"><code><strong>configureMouse</strong>: fn(cm: CodeMirror, repeat: "single" | "double" | "triple", event: Event) → Object</code></dt>
+      <dd>Allows you to configure the behavior of mouse selection and
+      dragging. The function is called when the left mouse button is
+      pressed. The returned object may have the following properties:
+        <dl>
+          <dt><code><strong>unit</strong>: "char" | "word" | "line" | "rectangle" | fn(CodeMirror, Pos) → {from: Pos, to: Pos}</code></dt>
+          <dd>The unit by which to select. May be one of the built-in
+          units or a function that takes a position and returns a
+          range around that, for a custom unit. The default is to
+          return <code>"word"</code> for double
+          clicks, <code>"line"</code> for triple
+          clicks, <code>"rectangle"</code> for alt-clicks (or, on
+          Chrome OS, meta-shift-clicks), and <code>"single"</code>
+          otherwise.</dd>
+          <dt><code><strong>extend</strong>: bool</code></dt>
+          <dd>Whether to extend the existing selection range or start
+          a new one. By default, this is enabled when shift
+          clicking.</dd>
+          <dt><code><strong>addNew</strong>: bool</code></dt>
+          <dd>When enabled, this adds a new range to the existing
+          selection, rather than replacing it. The default behavior is
+          to enable this for command-click on Mac OS, and
+          control-click on other platforms.</dd>
+          <dt><code><strong>moveOnDrag</strong>: bool</code></dt>
+          <dd>When the mouse even drags content around inside the
+          editor, this controls whether it is copied (false) or moved
+          (true). By default, this is enabled by alt-clicking on Mac
+          OS, and ctrl-clicking elsewhere.</dd>
+        </dl>
+      </dd>
+
+      <dt id="option_lineWrapping"><code><strong>lineWrapping</strong>: boolean</code></dt>
+      <dd>Whether CodeMirror should scroll or wrap for long lines.
+      Defaults to <code>false</code> (scroll).</dd>
+
+      <dt id="option_lineNumbers"><code><strong>lineNumbers</strong>: boolean</code></dt>
+      <dd>Whether to show line numbers to the left of the editor.</dd>
+
+      <dt id="option_firstLineNumber"><code><strong>firstLineNumber</strong>: integer</code></dt>
+      <dd>At which number to start counting lines. Default is 1.</dd>
+
+      <dt id="option_lineNumberFormatter"><code><strong>lineNumberFormatter</strong>: function(line: integer) → string</code></dt>
+      <dd>A function used to format line numbers. The function is
+      passed the line number, and should return a string that will be
+      shown in the gutter.</dd>
+
+      <dt id="option_gutters"><code><strong>gutters</strong>: array&lt;string | {className: string, style: ?string}&gt;</code></dt>
+      <dd>Can be used to add extra gutters (beyond or instead of the
+      line number gutter). Should be an array of CSS class names or
+      class name / CSS string pairs, each of which defines
+      a <code>width</code> (and optionally a background), and which
+      will be used to draw the background of the gutters. <em>May</em>
+      include the <code>CodeMirror-linenumbers</code> class, in order
+      to explicitly set the position of the line number gutter (it
+      will default to be to the right of all other gutters). These
+      class names are the keys passed
+      to <a href="#setGutterMarker"><code>setGutterMarker</code></a>.</dd>
+
+      <dt id="option_fixedGutter"><code><strong>fixedGutter</strong>: boolean</code></dt>
+      <dd>Determines whether the gutter scrolls along with the content
+      horizontally (false) or whether it stays fixed during horizontal
+      scrolling (true, the default).</dd>
+
+      <dt id="option_scrollbarStyle"><code><strong>scrollbarStyle</strong>: string</code></dt>
+      <dd>Chooses a scrollbar implementation. The default
+      is <code>"native"</code>, showing native scrollbars. The core
+      library also provides the <code>"null"</code> style, which
+      completely hides the
+      scrollbars. <a href="#addon_simplescrollbars">Addons</a> can
+      implement additional scrollbar models.</dd>
+
+      <dt id="option_coverGutterNextToScrollbar"><code><strong>coverGutterNextToScrollbar</strong>: boolean</code></dt>
+      <dd>When <a href="#option_fixedGutter"><code>fixedGutter</code></a>
+      is on, and there is a horizontal scrollbar, by default the
+      gutter will be visible to the left of this scrollbar. If this
+      option is set to true, it will be covered by an element with
+      class <code>CodeMirror-gutter-filler</code>.</dd>
+
+      <dt id="option_inputStyle"><code><strong>inputStyle</strong>: string</code></dt>
+      <dd>Selects the way CodeMirror handles input and focus. The core
+      library defines the <code>"textarea"</code>
+      and <code>"contenteditable"</code> input models. On mobile
+      browsers, the default is <code>"contenteditable"</code>. On
+      desktop browsers, the default is <code>"textarea"</code>.
+      Support for IME and screen readers is better in
+      the <code>"contenteditable"</code> model. The intention is to
+      make it the default on modern desktop browsers in the
+      future.</dd>
+
+      <dt id="option_readOnly"><code><strong>readOnly</strong>: boolean|string</code></dt>
+      <dd>This disables editing of the editor content by the user. If
+      the special value <code>"nocursor"</code> is given (instead of
+      simply <code>true</code>), focusing of the editor is also
+      disallowed.</dd>
+
+      <dt id="option_showCursorWhenSelecting"><code><strong>showCursorWhenSelecting</strong>: boolean</code></dt>
+      <dd>Whether the cursor should be drawn when a selection is
+      active. Defaults to false.</dd>
+
+      <dt id="option_lineWiseCopyCut"><code><strong>lineWiseCopyCut</strong>: boolean</code></dt>
+      <dd>When enabled, which is the default, doing copy or cut when
+      there is no selection will copy or cut the whole lines that have
+      cursors on them.</dd>
+
+      <dt id="option_pasteLinesPerSelection"><code><strong>pasteLinesPerSelection</strong>: boolean</code></dt>
+      <dd>When pasting something from an external source (not from the
+      editor itself), if the number of lines matches the number of
+      selection, CodeMirror will by default insert one line per
+      selection. You can set this to <code>false</code> to disable
+      that behavior.</dd>
+
+      <dt id="option_selectionsMayTouch"><code><strong>selectionsMayTouch</strong>: boolean</code></dt>
+      <dd>Determines whether multiple selections are joined as soon as
+      they touch (the default) or only when they overlap (true).</dd>
+
+      <dt id="option_undoDepth"><code><strong>undoDepth</strong>: integer</code></dt>
+      <dd>The maximum number of undo levels that the editor stores.
+      Note that this includes selection change events. Defaults to
+      200.</dd>
+
+      <dt id="option_historyEventDelay"><code><strong>historyEventDelay</strong>: integer</code></dt>
+      <dd>The period of inactivity (in milliseconds) that will cause a
+      new history event to be started when typing or deleting.
+      Defaults to 1250.</dd>
+
+      <dt id="option_tabindex"><code><strong>tabindex</strong>: integer</code></dt>
+      <dd>The <a href="http://www.w3.org/TR/html401/interact/forms.html#adef-tabindex">tab
+      index</a> to assign to the editor. If not given, no tab index
+      will be assigned.</dd>
+
+      <dt id="option_autofocus"><code><strong>autofocus</strong>: boolean</code></dt>
+      <dd>Can be used to make CodeMirror focus itself on
+      initialization. Defaults to off.
+      When <a href="#fromTextArea"><code>fromTextArea</code></a> is
+      used, and no explicit value is given for this option, it will be
+      set to true when either the source textarea is focused, or it
+      has an <code>autofocus</code> attribute and no other element is
+      focused.</dd>
+
+      <dt id="option_phrases"><code><strong>phrases</strong>: ?object</code></dt>
+      <dd>Some addons run user-visible strings (such as labels in the
+      interface) through the <a href="#phrase"><code>phrase</code></a>
+      method to allow for translation. This option determines the
+      return value of that method. When it is null or an object that
+      doesn't have a property named by the input string, that string
+      is returned. Otherwise, the value of the property corresponding
+      to that string is returned.</dd>
+    </dl>
+
+    <p>Below this a few more specialized, low-level options are
+    listed. These are only useful in very specific situations, you
+    might want to skip them the first time you read this manual.</p>
+
+    <dl>
+      <dt id="option_dragDrop"><code><strong>dragDrop</strong>: boolean</code></dt>
+      <dd>Controls whether drag-and-drop is enabled. On by default.</dd>
+
+      <dt id="option_allowDropFileTypes"><code><strong>allowDropFileTypes</strong>: array&lt;string&gt;</code></dt>
+      <dd>When set (default is <code>null</code>) only files whose
+      type is in the array can be dropped into the editor. The strings
+      should be MIME types, and will be checked against
+      the <a href="https://w3c.github.io/FileAPI/#dfn-type"><code>type</code></a>
+      of the <code>File</code> object as reported by the browser.</dd>
+
+      <dt id="option_cursorBlinkRate"><code><strong>cursorBlinkRate</strong>: number</code></dt>
+      <dd>Half-period in milliseconds used for cursor blinking. The default blink
+      rate is 530ms. By setting this to zero, blinking can be disabled. A
+      negative value hides the cursor entirely.</dd>
+
+      <dt id="option_cursorScrollMargin"><code><strong>cursorScrollMargin</strong>: number</code></dt>
+      <dd>How much extra space to always keep above and below the
+      cursor when approaching the top or bottom of the visible view in
+      a scrollable document. Default is 0.</dd>
+
+      <dt id="option_cursorHeight"><code><strong>cursorHeight</strong>: number</code></dt>
+      <dd>Determines the height of the cursor. Default is 1, meaning
+      it spans the whole height of the line. For some fonts (and by
+      some tastes) a smaller height (for example <code>0.85</code>),
+      which causes the cursor to not reach all the way to the bottom
+      of the line, looks better</dd>
+
+      <dt id="option_resetSelectionOnContextMenu"><code><strong>resetSelectionOnContextMenu</strong>: boolean</code></dt>
+      <dd>Controls whether, when the context menu is opened with a
+      click outside of the current selection, the cursor is moved to
+      the point of the click. Defaults to <code>true</code>.</dd>
+
+      <dt id="option_workTime"><code id="option_wordkDelay"><strong>workTime</strong>, <strong>workDelay</strong>: number</code></dt>
+      <dd>Highlighting is done by a pseudo background-thread that will
+      work for <code>workTime</code> milliseconds, and then use
+      timeout to sleep for <code>workDelay</code> milliseconds. The
+      defaults are 200 and 300, you can change these options to make
+      the highlighting more or less aggressive.</dd>
+
+      <dt id="option_pollInterval"><code><strong>pollInterval</strong>: number</code></dt>
+      <dd>Indicates how quickly CodeMirror should poll its input
+      textarea for changes (when focused). Most input is captured by
+      events, but some things, like IME input on some browsers, don't
+      generate events that allow CodeMirror to properly detect it.
+      Thus, it polls. Default is 100 milliseconds.</dd>
+
+      <dt id="option_flattenSpans"><code><strong>flattenSpans</strong>: boolean</code></dt>
+      <dd>By default, CodeMirror will combine adjacent tokens into a
+      single span if they have the same class. This will result in a
+      simpler DOM tree, and thus perform better. With some kinds of
+      styling (such as rounded corners), this will change the way the
+      document looks. You can set this option to false to disable this
+      behavior.</dd>
+
+      <dt id="option_addModeClass"><code><strong>addModeClass</strong>: boolean</code></dt>
+      <dd>When enabled (off by default), an extra CSS class will be
+      added to each token, indicating the
+      (<a href="#innerMode">inner</a>) mode that produced it, prefixed
+      with <code>"cm-m-"</code>. For example, tokens from the XML mode
+      will get the <code>cm-m-xml</code> class.</dd>
+
+      <dt id="option_maxHighlightLength"><code><strong>maxHighlightLength</strong>: number</code></dt>
+      <dd>When highlighting long lines, in order to stay responsive,
+      the editor will give up and simply style the rest of the line as
+      plain text when it reaches a certain position. The default is
+      10 000. You can set this to <code>Infinity</code> to turn off
+      this behavior.</dd>
+
+      <dt id="option_viewportMargin"><code><strong>viewportMargin</strong>: integer</code></dt>
+      <dd>Specifies the amount of lines that are rendered above and
+      below the part of the document that's currently scrolled into
+      view. This affects the amount of updates needed when scrolling,
+      and the amount of work that such an update does. You should
+      usually leave it at its default, 10. Can be set
+      to <code>Infinity</code> to make sure the whole document is
+      always rendered, and thus the browser's text search works on it.
+      This <em>will</em> have bad effects on performance of big
+      documents.</dd>
+      
+      <dt id="option_spellcheck"><code><strong>spellcheck</strong>: boolean</code></dt>
+      <dd>Specifies whether or not spellcheck will be enabled on the input.</dd>
+      
+      <dt id="option_autocorrect"><code><strong>autocorrect</strong>: boolean</code></dt>
+      <dd>Specifies whether or not autocorrect will be enabled on the input.</dd>
+      
+      <dt id="option_autocapitalize"><code><strong>autocapitalize</strong>: boolean</code></dt>
+      <dd>Specifies whether or not autocapitalization will be enabled on the input.</dd>
+    </dl>
+</section>

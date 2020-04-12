@@ -1,0 +1,77 @@
+
+<section id=styling>
+    <h2>Customized Styling</h2>
+
+    <p>Up to a certain extent, CodeMirror's look can be changed by
+    modifying style sheet files. The style sheets supplied by modes
+    simply provide the colors for that mode, and can be adapted in a
+    very straightforward way. To style the editor itself, it is
+    possible to alter or override the styles defined
+    in <a href="../lib/codemirror.css"><code>codemirror.css</code></a>.</p>
+
+    <p>Some care must be taken there, since a lot of the rules in this
+    file are necessary to have CodeMirror function properly. Adjusting
+    colors should be safe, of course, and with some care a lot of
+    other things can be changed as well. The CSS classes defined in
+    this file serve the following roles:</p>
+
+    <dl>
+      <dt id="class_CodeMirror"><code><strong>CodeMirror</strong></code></dt>
+      <dd>The outer element of the editor. This should be used for the
+      editor width, height, borders and positioning. Can also be used
+      to set styles that should hold for everything inside the editor
+      (such as font and font size), or to set a background. Setting
+      this class' <code>height</code> style to <code>auto</code> will
+      make the editor <a href="../demo/resize.html">resize to fit its
+      content</a> (it is recommended to also set
+      the <a href="#option_viewportMargin"><code>viewportMargin</code>
+      option</a> to <code>Infinity</code> when doing this.</dd>
+
+      <dt id="class_CodeMirror_focused"><code><strong>CodeMirror-focused</strong></code></dt>
+      <dd>Whenever the editor is focused, the top element gets this
+      class. This is used to hide the cursor and give the selection a
+      different color when the editor is not focused.</dd>
+
+      <dt id="class_CodeMirror_gutters"><code><strong>CodeMirror-gutters</strong></code></dt>
+      <dd>This is the backdrop for all gutters. Use it to set the
+      default gutter background color, and optionally add a border on
+      the right of the gutters.</dd>
+
+      <dt id="class_CodeMirror_linenumbers"><code><strong>CodeMirror-linenumbers</strong></code></dt>
+      <dd>Use this for giving a background or width to the line number
+      gutter.</dd>
+
+      <dt id="class_CodeMirror_linenumber"><code><strong>CodeMirror-linenumber</strong></code></dt>
+      <dd>Used to style the actual individual line numbers. These
+      won't be children of the <code>CodeMirror-linenumbers</code>
+      (plural) element, but rather will be absolutely positioned to
+      overlay it. Use this to set alignment and text properties for
+      the line numbers.</dd>
+
+      <dt id="class_CodeMirror_lines"><code><strong>CodeMirror-lines</strong></code></dt>
+      <dd>The visible lines. This is where you specify vertical
+      padding for the editor content.</dd>
+
+      <dt id="class_CodeMirror_cursor"><code><strong>CodeMirror-cursor</strong></code></dt>
+      <dd>The cursor is a block element that is absolutely positioned.
+      You can make it look whichever way you want.</dd>
+
+      <dt id="class_CodeMirror_selected"><code><strong>CodeMirror-selected</strong></code></dt>
+      <dd>The selection is represented by <code>span</code> elements
+      with this class.</dd>
+
+      <dt id="class_CodeMirror_matchingbracket"><code><strong>CodeMirror-matchingbracket</strong></code>,
+        <code><strong>CodeMirror-nonmatchingbracket</strong></code></dt>
+      <dd>These are used to style matched (or unmatched) brackets.</dd>
+    </dl>
+
+    <p>If your page's style sheets do funky things to
+    all <code>div</code> or <code>pre</code> elements (you probably
+    shouldn't do that), you'll have to define rules to cancel these
+    effects out again for elements under the <code>CodeMirror</code>
+    class.</p>
+
+    <p>Themes are also simply CSS files, which define colors for
+    various syntactic elements. See the files in
+    the <a href="../theme/"><code>theme</code></a> directory.</p>
+</section>

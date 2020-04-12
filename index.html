@@ -14,14 +14,12 @@
 <body>
 
     <header>
-        <form action="">
-            <input type="text">
-        </form>
+        <input type="text" id="search" onkeyup="search()" placeholder="Search for Bookmarklet.." style="">
     </header>
 
     <main>
 
-        <nav>
+        <nav id="nav">
             <li>Browser :
                 <ul>
                     <li><a href="html/browser/location.html">Location</a></li>
@@ -67,7 +65,7 @@
             </li>
         </nav>
 
-        <article>
+        <article id="article">
             <div id="log"></div>
         </article>
 
