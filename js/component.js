@@ -24,12 +24,3 @@ Component.prototype = {
     }
 
 }
-
-
-/*
-var x = new Component();
-x._opened; // false;
-x.toggle();
-x._opened; // true;
-*/
-
