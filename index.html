@@ -2,95 +2,122 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>Document</title>
-    <link rel="shortcut icon" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-    <header>
-        <input type="text" id="search" onkeyup="search()" placeholder="Search for Bookmarklet.." style="">
-    </header>
+    <!-- Off Side Panel, decouple, emitter -->
+    <aside id="aside" hidden>
 
-    <main>
+        <template id="asideTemplate">
 
-        <nav id="nav">
-            <li>Browser :
-                <ul>
-                    <li><a href="html/browser/location.html">Location</a></li>
-                    <li><a href="html/browser/navigator.html">Navigator</a></li>
-                    <li><a href="html/browser/screen.html">Screen</a></li>
-                    <li><a href="html/browser/timing.html">Timing</a></li>
-                    <li><a href="html/browser/Window.html">Window</a></li>
-                </ul>
-            </li>
+            <ul class="list">
 
-            <li>Storage :
-                <ul>
-                    <li><a href="html/storage/session.html">Session Storage</a></li>
-                    <li><a href="html/storage/local.html">Local Storage</a></li>
-                    <li><a href="html/storage/sql.html">Web SQL</a></li>
-                    <li><a href="html/storage/indexed.html">Indexed DB</a></li>
-                </ul>
-            </li>
-            <li>Media :
-                <ul>
-                    <li><a href="html/media/audio.html">Audio</a></li>
-                    <li><a href="html/media/video.html">Video</a></li>
-                    <li><a href="html/media/canvas.html">Canvas</a></li>
-                </ul>
-            </li>
-            <li>Contenteditable :
-                <ul>
-                    <li><a href="html/contenteditable/test.html">Test</a></li>
-                </ul>
-            </li>            
-            <li>Workers :
-                <ul>
-                    <li><a href="html/worker/web-worker.html">Web Worker</a></li>
-                    <li><a href="html/worker/service-worker.html">Service Worker</a></li>
-                </ul>
-            </li>
+                <li class="list-item" data-toggle="collapse"></li>
 
-            <li>Debug :
-                <ul>
-                    <li><a href="html/debug/bookmarks.html">Bookmarks</a></li>
-                    <li><a href="html/debug/repl.html">JS Repl</a></li>
-                </ul>
-            </li>
-            <li>Tests :
-                <ul>
-                    <li><a href="html/tests/index.html">Index of Tests</a></li>
-                </ul>
-            </li>
-        </nav>
+                <div class="collapse" hidden>
+                    <p></p>
+                </div>
 
-        <article id="article">
-            <div id="log"></div>
+            </ul>
+
+        </template>
+
+    </aside>
+
+    <!-- Main Visual Box Model -->
+    <main role="main">
+
+        <header>
+
+            <nav role="navigation">
+
+                <!-- UI Component, Provides Navigation to and from other sources -->
+                <details>
+                    <summary>Navigation</summary>
+
+                    <li>Browser :
+                        <ul>
+                            <li><a href="html/browser/location.html">Location</a></li>
+                            <li><a href="html/browser/navigator.html">Navigator</a></li>
+                            <li><a href="html/browser/screen.html">Screen</a></li>
+                            <li><a href="html/browser/timing.html">Timing</a></li>
+                            <li><a href="html/browser/Window.html">Window</a></li>
+                        </ul>
+                    </li>
+
+                    <li>Storage :
+                        <ul>
+                            <li><a href="html/storage/session.html">Session Storage</a></li>
+                            <li><a href="html/storage/local.html">Local Storage</a></li>
+                            <li><a href="html/storage/sql.html">Web SQL</a></li>
+                            <li><a href="html/storage/indexed.html">Indexed DB</a></li>
+                        </ul>
+                    </li>
+                    <li>Media :
+                        <ul>
+                            <li><a href="html/media/audio.html">Audio</a></li>
+                            <li><a href="html/media/video.html">Video</a></li>
+                            <li><a href="html/media/canvas.html">Canvas</a></li>
+                        </ul>
+                    </li>
+                    <li>Contenteditable :
+                        <ul>
+                            <li><a href="html/contenteditable/test.html">Test</a></li>
+                        </ul>
+                    </li>
+                    <li>Workers :
+                        <ul>
+                            <li><a href="html/worker/web-worker.html">Web Worker</a></li>
+                            <li><a href="html/worker/service-worker.html">Service Worker</a></li>
+                        </ul>
+                    </li>
+
+                    <li>Debug :
+                        <ul>
+                            <li><a href="html/debug/bookmarks.html">Bookmarks</a></li>
+                            <li><a href="html/debug/repl.html">JS Repl</a></li>
+                        </ul>
+                    </li>
+                    <li>Tests :
+                        <ul>
+                            <li><a href="html/tests/index.html">Index of Tests</a></li>
+                        </ul>
+                    </li>
+                </details>
+            </nav>
+
+
+        </header>
+
+        <article id="article" role="article" aria-atomic="true">
+
+            <!-- Aria-Atomic, this area's content is expected to change -->
+
+            <pre></pre>
+
         </article>
+
+        <!-- Optional Drawer Component -->
+        <footer class="">
+
+        </footer>
 
     </main>
 
-    <footer></footer>
+    <div class="modal" role="dialog" aria-hidden="true" tabindex="-1">
 
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/vendor.min.js"></script>
-    <script src="js/script.js"></script>
-    <script>
-    require('init')([
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/screen',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/cookies',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/location',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/navigator',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/timing',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/alert',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/window',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/history'
-    ]);
-    </script>
+        <div role="document">
+
+        </div>
+
+    </div>
+
 </body>
+
 </html>
