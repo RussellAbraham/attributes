@@ -1,0 +1,74 @@
+<div class="jumbotron">
+    <div class="container">
+        <p>Border and Background Color</p>
+        <div class="sliders">
+            <label for="background-color">Background:</label>
+            <hr />
+            <input id="background-color" class="color" type="text" name="background-color">
+            <span class="noSuffix"><span>
+        </div>
+        <div class="sliders">
+            <label for="border-color">Border Color:</label>
+            <hr />
+            <input id="border-color" class="color" type="text" name="border-color" value="#5092c7">
+            <span class="noSuffix"><span>
+        </div>
+        <hr />
+        <p>Border Styles:</p>
+        <div class="sliders">
+            <label for="outer-border-radius">Outer Border:</label>
+            <hr />
+            <input id="outer-border-radius" type="range" name="outer-border-radius" min="0" max="200" value="0"
+                data-sizing="%">
+            <span class="slider-value">0%<span>
+        </div>
+        <div class="sliders">
+            <label for="border-width">Border Width:</label>
+            <hr />
+            <input id="border-width" type="range" name="border-width" min="0" max="50" value="0" data-sizing="px">
+            <span class="slider-value">0px<span>
+        </div>
+        <div class="sliders">
+            <label for="border-radius">Border Radius:</label>
+            <hr />
+            <input id="border-radius" type="range" name="border-radius" min="0" max="250" value="0" data-sizing="px">
+            <span class="slider-value">0px<span>
+        </div>
+        <div class="border-styles-div">
+            <form id="border-styles">
+                <div class="radio-div">
+                    <input class="border-styles" type="radio" name="border-styles" value="none">
+                    <span>None</span>
+                </div>
+                <div class="radio-div">
+                    <input class="border-styles" type="radio" name="border-styles" value="solid">
+                    <span>Solid</span>
+                </div>
+                <div class="radio-div">
+                    <input class="border-styles" type="radio" name="border-styles" value="double">
+                    <span>Double</span>
+                </div>
+                <div class="radio-div">
+                    <input class="border-styles" type="radio" name="border-styles" value="dashed">
+                    <span>Dashed</span>
+                </div>
+                <div class="radio-div">
+                    <input class="border-styles" type="radio" name="border-styles" value="groove">
+                    <span>Groove</span>
+                </div>
+                <div class="radio-div">
+                    <input class="border-styles" type="radio" name="border-styles" value="ridge">
+                    <span>Ridge</span>
+                </div>
+                <div class="radio-div">
+                    <input class="border-styles" type="radio" name="border-styles" value="outset">
+                    <span>Outset</span>
+                </div>
+                <div class="radio-div">
+                    <input class="border-styles" type="radio" name="border-styles" value="hidden">
+                    <span>Hidden</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
