@@ -1,123 +1,135 @@
+<section class="settings textinputs">
 
-<div class="jumbotron">
-    <div class="container">
-        <p>Text Input</p>
-        <div class="text-1 controls">
-            <div class="sliders">
-                <label id="text-label" for="text-content">Enter Text:</label>
-                <hr />
-                <input id="text-content" type="text" name="text-content">
-                <span class="noSuffix"><span>
-            </div>
-            <button id="text-on-off" class="button" onclick="addText()">Add Text</button>
-            <button id="text-on-off" class="button" onclick="removeText()">Remove Text</button>
-            <button id="text-on-off" class="button" onclick="toggleText()">Toggle Text</button>
-            <div class="sliders">
-                <label for="text-color">Text Color:</label>
-                <hr />
-                <input id="text-color" class="color" type="text" name="text-color">
-                <span class="noSuffix"><span>
-            </div>
-            <div class="sliders">
-                <label for="text-shadow-color">Shadow Color:</label>
-                <hr />
-                <input id="text-shadow-color" class="color" type="text" name="text-shadow-color">
-                <span class="noSuffix"><span>
-            </div>
-            <div class="sliders">
-                <label for="text-size">Text Size:</label>
-                <hr />
-                <input id="text-size" type="range" name="text-size" min="0" max="300" value="30" data-sizing="px">
-                <span class="slider-value">30px<span>
-            </div>
-            <div class="sliders">
-                <label for="text-translate-x">Text Move X:</label>
-                <hr />
-                <input id="text-translate-x" type="range" name="text-translate-x" min="-250" max="600" value="0"
-                    data-sizing="px">
-                <span class="slider-value">0px<span>
-            </div>
-            <div class="sliders">
-                <label for="text-translate-y">Text Move Y:</label>
-                <hr />
-                <input id="text-translate-y" type="range" name="text-translate-y" min="-150" max="500" value="0"
-                    data-sizing="px">
-                <span class="slider-value">0px<span>
-            </div>
-            <div class="sliders">
-                <label for="text-shadow">Shadow Size:</label>
-                <hr />
-                <input id="text-shadow" type="range" name="text-shadow" min="-20" max="20" value="1" data-sizing="px">
-                <span>1px<span>
-            </div>
-            <div class="sliders">
-                <label for="letter-spacing">Letter Spacing:</label>
-                <hr />
-                <input id="letter-spacing" type="range" name="letter-spacing" min="-50" max="100" value="0"
-                    data-sizing="px">
-                <span class="slider-value">0px<span>
-            </div>
-            <div class="sliders">
-                <label for="word-spacing">Word Spacing:</label>
-                <hr />
-                <input id="word-spacing" type="range" name="word-spacing" min="-5" step="0.25" max="3" value="0.15"
-                    data-sizing="em">
-                <span class="slider-value">0.25em<span>
-            </div>
-            <div class="sliders">
-                <label for="text-skew">Text Skew:</label>
-                <hr />
-                <input id="text-skew" type="range" name="text-skew" min="-90" max="90" value="0" data-sizing="deg">
-                <span class="slider-value">0deg<span>
-            </div>
-            <div class="sliders">
-                <label for="text-rotate">Text Rotate:</label>
-                <hr />
-                <input id="text-rotate" type="range" name="text-rotate" min="0" max="360" value="0" data-sizing="deg">
-                <span class="slider-value">0deg<span>
-            </div>
+    <div class="text-1 controls">
+    
+        <div class="sliders">
+            <label id="text-label" for="text-content">Enter Text:</label>
+            <hr />
+            <input id="text-content" type="text" name="text-content">
+            <span class="noSuffix"><span>
         </div>
-        <div class="fonts">
-            <div class="radio-div">
-                <input class="font-select" type="radio" name="font-select" value="Montserrat">
-                <span>Montserrat</span>
-            </div>
-            <div class="radio-div">
-                <input class="font-select" type="radio" name="font-select" value="Lobster">
-                <span>Lobster</span>
-            </div>
-            <div class="radio-div">
-                <input class="font-select" type="radio" name="font-select" value="Cinzel">
-                <span>Cinzel</span>
-            </div>
-            <div class="radio-div">
-                <input class="font-select" type="radio" name="font-select" value="Barrio">
-                <span>Barrio</span>
-            </div>
-            <div class="radio-div">
-                <input class="font-select" type="radio" name="font-select" value="Montserrat Subrayada">
-                <span>Subrayada</span>
-            </div>
-            <div class="radio-div">
-                <input class="font-select" type="radio" name="font-select" value="El Messiri">
-                <span>El Messiri</span>
-            </div>
-            <div class="radio-div">
-                <input class="font-select" type="radio" name="font-select" value="Dancing Script">
-                <span>Dancing</span>
-            </div>
-            <div class="radio-div">
-                <input class="font-select" type="radio" name="font-select" value="Keania One">
-                <span>Keania</span>
-            </div>
-            <div class="radio-div">
-                <input class="font-select" type="radio" name="font-select" value="Pacifico">
-                <span>Pacifico</span>
-            </div>
-            <div class="radio-div">
-                <input class="font-select" type="radio" name="font-select" value="Bubbler One">
-                <span>Bubbler</span>
-            </div>
+    
+        <button id="text-on-off" class="button" onclick="addText()">Add Text</button>
+        <button id="text-on-off" class="button" onclick="removeText()">Remove Text</button>
+        <button id="text-on-off" class="button" onclick="toggleText()">Toggle Text</button>
+    
+        <div class="sliders">
+            <label for="text-color">Text Color:</label>
+            <hr />
+            <input id="text-color" class="color" type="text" name="text-color">
+            <span class="noSuffix"><span>
+        </div>
+    
+        <div class="sliders">
+            <label for="text-shadow-color">Shadow Color:</label>
+            <hr />
+            <input id="text-shadow-color" class="color" type="text" name="text-shadow-color">
+            <span class="noSuffix"><span>
+        </div>
+    
+        <div class="sliders">
+            <label for="text-size">Text Size:</label>
+            <hr />
+            <input id="text-size" type="range" name="text-size" min="0" max="300" value="30" data-sizing="px">
+            <span class="slider-value">30px<span>
+        </div>
+    
+        <div class="sliders">
+            <label for="text-translate-x">Text Move X:</label>
+            <hr />
+            <input id="text-translate-x" type="range" name="text-translate-x" min="-250" max="600" value="0"
+                data-sizing="px">
+            <span class="slider-value">0px<span>
+        </div>
+
+        <div class="sliders">
+            <label for="text-translate-y">Text Move Y:</label>
+            <hr />
+            <input id="text-translate-y" type="range" name="text-translate-y" min="-150" max="500" value="0"
+                data-sizing="px">
+            <span class="slider-value">0px<span>
+        </div>
+
+        <div class="sliders">
+            <label for="text-shadow">Shadow Size:</label>
+            <hr />
+            <input id="text-shadow" type="range" name="text-shadow" min="-20" max="20" value="1" data-sizing="px">
+            <span>1px<span>
+        </div>
+
+        <div class="sliders">
+            <label for="letter-spacing">Letter Spacing:</label>
+            <hr />
+            <input id="letter-spacing" type="range" name="letter-spacing" min="-50" max="100" value="0"
+                data-sizing="px">
+            <span class="slider-value">0px<span>
+        </div>
+
+        <div class="sliders">
+            <label for="word-spacing">Word Spacing:</label>
+            <hr />
+            <input id="word-spacing" type="range" name="word-spacing" min="-5" step="0.25" max="3" value="0.15"
+                data-sizing="em">
+            <span class="slider-value">0.25em<span>
+        </div>
+
+        <div class="sliders">
+            <label for="text-skew">Text Skew:</label>
+            <hr />
+            <input id="text-skew" type="range" name="text-skew" min="-90" max="90" value="0" data-sizing="deg">
+            <span class="slider-value">0deg<span>
+        </div>
+
+        <div class="sliders">
+            <label for="text-rotate">Text Rotate:</label>
+            <hr />
+            <input id="text-rotate" type="range" name="text-rotate" min="0" max="360" value="0" data-sizing="deg">
+            <span class="slider-value">0deg<span>
+        </div>
+
+    </div>
+
+    <div class="fonts">
+        <div class="radio-div">
+            <input class="font-select" type="radio" name="font-select" value="Montserrat">
+            <span>Montserrat</span>
+        </div>
+        <div class="radio-div">
+            <input class="font-select" type="radio" name="font-select" value="Lobster">
+            <span>Lobster</span>
+        </div>
+        <div class="radio-div">
+            <input class="font-select" type="radio" name="font-select" value="Cinzel">
+            <span>Cinzel</span>
+        </div>
+        <div class="radio-div">
+            <input class="font-select" type="radio" name="font-select" value="Barrio">
+            <span>Barrio</span>
+        </div>
+        <div class="radio-div">
+            <input class="font-select" type="radio" name="font-select" value="Montserrat Subrayada">
+            <span>Subrayada</span>
+        </div>
+        <div class="radio-div">
+            <input class="font-select" type="radio" name="font-select" value="El Messiri">
+            <span>El Messiri</span>
+        </div>
+        <div class="radio-div">
+            <input class="font-select" type="radio" name="font-select" value="Dancing Script">
+            <span>Dancing</span>
+        </div>
+        <div class="radio-div">
+            <input class="font-select" type="radio" name="font-select" value="Keania One">
+            <span>Keania</span>
+        </div>
+        <div class="radio-div">
+            <input class="font-select" type="radio" name="font-select" value="Pacifico">
+            <span>Pacifico</span>
+        </div>
+        <div class="radio-div">
+            <input class="font-select" type="radio" name="font-select" value="Bubbler One">
+            <span>Bubbler</span>
         </div>
     </div>
-</div>
+    
+</section>
