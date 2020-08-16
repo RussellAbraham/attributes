@@ -1,127 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta charset="UTF-8">
     <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/bootstrap.min.css">
+    <link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/raleway.css">
+    <style>html,body,main { font-family : 'Raleway'; }
+    .bar {
+  height: 1px;
+  box-sizing:border-box;
+}
+.list {
+  color: #E0E0E0;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 3px;
+  letter-spacing: 1px;
+  margin: 1px;
+  border: 1px solid RGBA(0,0,0,0.15);
+}
+.list:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+*,*::before,*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  overflow:auto;    
+  background-color: #333;
+}
+
+ul {
+  list-style-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766/out.svg);
+	margin: 0;
+	padding: 0 0 0 1.0em;
+}
+a {
+  color: #E0E0E0;
+  text-decoration: none;
+}
+a:hover {
+	opacity: 0.75;
+	color: steelblue;
+}
+a:active {
+	color: violet;
+}
+
+aside {
+  margin: auto;
+  max-width: 99.95%;
+  height: calc(100vh - 2px);
+  overflow:auto;
+  background-color: #333;
+  border: 1px solid RGBA(0,0,0,0.15);
+}
+aside::-webkit-scrollbar,
+aside::-webkit-scrollbar-button,
+aside::-webkit-scrollbar-track,
+aside::-webkit-scrollbar-track-piece,
+aside::-webkit-scrollbar-thumb,
+aside::-webkit-scrollbar-corner,
+aside::-webkit-resizer {
+	background:;
+}
+aside::-webkit-scrollbar {
+	width:  7px;
+	height: 7px;
+	-webkit-border-radius: 0;
+	        border-radius: 0;
+}
+aside::-webkit-scrollbar-track-piece {
+	-webkit-border-radius: 0;
+	        border-radius: 0;
+  	background: #323232;
+}
+aside::-webkit-scrollbar-thumb {
+	background: #4f4f4f;
+	        border-radius: 5px;
+}
+aside::-webkit-scrollbar-button {
+	width:0;
+	height:0;
+}
 
 
+    </style>
 </head>
-
 <body>
+    
+    <script type="text/js-worker">
 
-    <!-- Off Side Panel, decouple, emitter -->
-    <aside id="aside" hidden>
-
-        <template id="asideTemplate">
-
-            <ul class="list">
-
-                <li class="list-item" data-toggle="collapse">
-                    <data class="data-item" value="0">
-                        <a name="hash">hash</a>
-                    </data>
-                </li>
-
-                <div class="collapse" hidden>
-                    <p>composite</p>
-                </div>
-
-            </ul>
-
-        </template>
-
-    </aside>
-
-    <!-- Main Visual Box Model -->
-    <main role="main">
-
-        <header>
-
-            <nav role="navigation">
-
-                <!-- UI Component, Provides Navigation to and from other sources -->
-                <details>
-                    <summary>Navigation</summary>
-
-                    <li>Browser :
-                        <ul>
-                            <li><a href="html/browser/location.html">Location</a></li>
-                            <li><a href="html/browser/navigator.html">Navigator</a></li>
-                            <li><a href="html/browser/screen.html">Screen</a></li>
-                            <li><a href="html/browser/timing.html">Timing</a></li>
-                            <li><a href="html/browser/Window.html">Window</a></li>
-                        </ul>
+        var myVar = [];
+        
+      // Rest of your worker code goes here.
+        
+    </script>
+    
+    
+    <div class="bar"></div>
+      <aside id="aside">
+        <ul>
+          <template id="template">
+                    <li class="list">
+                        <a class="link" data-toggle="collapse" aria-expanded="false">
+                            
+                        </a>
                     </li>
+                    <ul class="list-group collapse text-white">
+                        <li class="list-group-item bg-dark"></li>
+                    </ul>
+          </template>  
+        </ul>
+    
+      </aside>
+    
+    <div class="bar"></div>
+    
+    <script type="text/javascript">
+      function pageLog(sMsg) {
+        // Use a fragment: browser will only render/reflow once.
+        var oFragm = document.createDocumentFragment();
+        oFragm.appendChild(document.createTextNode(sMsg));
+        oFragm.appendChild(document.createElement('br'));
+        document.querySelector('#logDisplay').appendChild(oFragm);
+      }
+    </script>
+    <script type="text/js-worker">
+      onmessage = function(oEvent) {
+        postMessage(myVar);
+      };
+      // Rest of your worker code goes here.
+    </script>
+    
+    <div id="logDisplay" style="display:none;"></div>
 
-                    <li>Storage :
-                        <ul>
-                            <li><a href="html/storage/session.html">Session Storage</a></li>
-                            <li><a href="html/storage/local.html">Local Storage</a></li>
-                            <li><a href="html/storage/sql.html">Web SQL</a></li>
-                            <li><a href="html/storage/indexed.html">Indexed DB</a></li>
-                        </ul>
-                    </li>
-                    <li>Media :
-                        <ul>
-                            <li><a href="html/media/audio.html">Audio</a></li>
-                            <li><a href="html/media/video.html">Video</a></li>
-                            <li><a href="html/media/canvas.html">Canvas</a></li>
-                        </ul>
-                    </li>
-                    <li>Contenteditable :
-                        <ul>
-                            <li><a href="html/contenteditable/test.html">Test</a></li>
-                        </ul>
-                    </li>
-                    <li>Workers :
-                        <ul>
-                            <li><a href="html/worker/web-worker.html">Web Worker</a></li>
-                            <li><a href="html/worker/service-worker.html">Service Worker</a></li>
-                        </ul>
-                    </li>
-
-                    <li>Debug :
-                        <ul>
-                            <li><a href="html/debug/bookmarks.html">Bookmarks</a></li>
-                            <li><a href="html/debug/repl.html">JS Repl</a></li>
-                        </ul>
-                    </li>
-                    <li>Tests :
-                        <ul>
-                            <li><a href="html/tests/index.html">Index of Tests</a></li>
-                        </ul>
-                    </li>
-                </details>
-            </nav>
-
-
-        </header>
-
-        <article id="article" role="article" aria-atomic="true">
-
-            <!-- Aria-Atomic, this area's content is expected to change -->
-
-            <pre></pre>
-
-        </article>
-
-        <!-- Optional Drawer Component -->
-        <footer class="">
-
-        </footer>
-
-    </main>
-
-    <div class="modal" role="dialog" aria-hidden="true" tabindex="-1">
-
-        <div role="document">
-
-        </div>
-
-    </div>
-
+    <script src="index.js"></script>
 </body>
-
 </html>
